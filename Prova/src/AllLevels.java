@@ -163,6 +163,17 @@ public class AllLevels {
 
 		//Level 8
 		
+		// Wait for the alert to appear
+		WebDriverWait wait8 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		Alert alert8 = wait8.until(ExpectedConditions.alertIsPresent());
+
+		// Write the level's number in the textbox
+		alert8.sendKeys("9");
+
+		// Click the "Aceptar" button
+		alert8.accept();
+
+		
 
 		//Level 9
 		
