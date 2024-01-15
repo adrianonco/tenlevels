@@ -137,6 +137,13 @@ public class AllLevels {
 
 		//Level 6
 		
+		// Get the hidden button element
+		WebElement button = driver.findElement(By.id("hidden\""));
+				
+		// Execute JavaScript to make the button visible and click
+		String onClick = button.getAttribute("onClick");
+		((JavascriptExecutor)driver).executeScript(onClick);
+		
 
 		//Level 7
 		
