@@ -128,6 +128,12 @@ public class AllLevels {
 		
 		//Level 5
 		
+		// Get the link
+		WebElement link = driver.findElement(By.linkText("Enlace!"));
+
+		// Click the link
+		link.click();
+		
 
 		//Level 6
 		
