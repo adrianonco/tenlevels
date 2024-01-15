@@ -93,6 +93,27 @@ public class AllLevels {
 
 		//Level 3
 		
+		// Get the element with class="custom_dummy_label"
+		WebElement labelElement = driver.findElement(By.className("custom_dummy_label"));
+
+		// Get the text of the label
+		String labelText = labelElement.getText();
+
+		// Get the input field with id="input"
+		WebElement inputField = driver.findElement(By.id("input"));
+
+		// Clear the input field
+		inputField.clear();
+
+		// Paste the label's text into the input field
+		inputField.sendKeys(labelText);
+
+		// Get the button with id="next"
+		WebElement nextButton = driver.findElement(By.id("next"));
+
+		// Click the next button
+		nextButton.click();
+		
 	
 		//Level 4
 		
