@@ -173,9 +173,55 @@ public class AllLevels {
 		// Click the "Aceptar" button
 		alert8.accept();
 
-		
 
 		//Level 9
+		
+		// Main Handle Window
+				String handleMainWindow = driver.getWindowHandle();
+
+				// Esperar y cambiar al Pop-up
+				Set<String> allWindowHandles = driver.getWindowHandles();
+				for (String windowHandle : allWindowHandles) {
+				    if (!windowHandle.equals(handleMainWindow)) {
+				        driver.switchTo().window(windowHandle);
+				        break;
+				    }
+				}
+
+				// Esperar y obtener el password del Pop-up
+				WebDriverWait wait9 = new WebDriverWait(driver, Duration.ofSeconds(10));
+				WebElement passwordElement = wait9.until(ExpectedConditions.visibilityOfElementLocated(By.id("pass")));
+				String password = passwordElement.getText();
+
+				// Cambiar de nuevo a la ventana principal
+				driver.switchTo().window(handleMainWindow);
+
+				// Enviar password y hacer clic en "next"
+				WebElement inputElement9 = driver.findElement(By.id("input"));
+				inputElement9.sendKeys(password);
+				WebElement nextButtonElement9 = driver.findElement(By.id("next"));
+				nextButtonElement9.click();
+				
+				/*
+				
+				// Wait for the pop-up to appear
+				WebDriverWait wait9 = new WebDriverWait(driver, Duration.ofSeconds(10));
+				WebElement passwordElement = wait9.until(ExpectedConditions.visibilityOfElementLocated(By.id("pass")));
+				
+				// Get password
+				String password = passwordElement.getText(); 
+
+				// Switch to main window
+				driver.switchTo().window(handleMainWindow);
+
+				WebElement inputElement9 = driver.findElement(By.id("input"));
+				inputElement9.sendKeys(password);
+
+				WebElement nextButtonElement9 = driver.findElement(By.id("next"));
+				nextButtonElement9.click();
+				
+				*/
+
 		
 
 		//Level 10
