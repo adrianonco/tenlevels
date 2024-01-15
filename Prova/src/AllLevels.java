@@ -153,6 +153,13 @@ public class AllLevels {
 
 		//Level 7
 		
+		// Wait for the alert to appear
+		WebDriverWait wait7 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		Alert alert7 = wait7.until(ExpectedConditions.alertIsPresent());
+				
+		// Click the "Aceptar" button
+		alert7.accept();
+		
 
 		//Level 8
 		
