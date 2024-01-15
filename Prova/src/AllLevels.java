@@ -117,6 +117,14 @@ public class AllLevels {
 	
 		//Level 4
 		
+		// Get the four buttons
+		List<WebElement> buttons = driver.findElements(By.cssSelector("a.btn.btn-dark.btn-lga"));
+
+		// Iterate over the buttons and click them
+		for (WebElement button : buttons) {
+			button.click();
+		}
+		
 		
 		//Level 5
 		
