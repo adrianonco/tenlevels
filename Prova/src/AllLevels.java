@@ -178,11 +178,15 @@ public class AllLevels {
 		//Level 7
 		
 		// Wait for the alert to appear
-		WebDriverWait wait7 = new WebDriverWait(driver, Duration.ofSeconds(10));
-		Alert alert7 = wait7.until(ExpectedConditions.alertIsPresent());
-				
-		// Click the "Aceptar" button
-		alert7.accept();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+		// Assert the alert text
+		String expectedAlertText = "Quieres ir al siguiente nivel?";
+		assertEquals(expectedAlertText, alert.getText());
+
+		// Click button
+		alert.accept();
 		
 
 		//Level 8
