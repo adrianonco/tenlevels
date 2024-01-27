@@ -38,6 +38,9 @@ public class AllLevels {
 	private By colorButton = By.cssSelector("a.btn.btn-dark.btn-lga");
 	private By link = By.linkText("Enlace!");
 	private By hiddenButton = By.id("hidden\"");
+	private By pass = By.id("pass");
+	private By textInput = By.id("input");
+	private By clickButton = By.id("next");
 
 	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
@@ -178,22 +181,26 @@ public class AllLevels {
 		//Level 7
 		
 		// Wait for the alert to appear
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+		WebDriverWait waitAlert7 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		Alert alert7 = waitAlert7.until(ExpectedConditions.alertIsPresent());
 
 		// Assert the alert text
-		String expectedAlertText = "Quieres ir al siguiente nivel?";
-		assertEquals(expectedAlertText, alert.getText());
+		String expectedAlert7Text = "Quieres ir al siguiente nivel?";
+		assertEquals(expectedAlert7Text, alert7.getText());
 
 		// Click button
-		alert.accept();
+		alert7.accept();
 		
 
 		//Level 8
 		
 		// Wait for the alert to appear
-		WebDriverWait wait8 = new WebDriverWait(driver, Duration.ofSeconds(10));
-		Alert alert8 = wait8.until(ExpectedConditions.alertIsPresent());
+		WebDriverWait waitAlert8 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		Alert alert8 = waitAlert8.until(ExpectedConditions.alertIsPresent());
+		
+		// Assert the alert text
+		String expectedAlert8Text = "Introduce el número del próximo nivel y presiona 'Aceptar'";
+		assertEquals(expectedAlert8Text, alert8.getText());
 
 		// Write the level's number in the textbox
 		alert8.sendKeys("9");
@@ -203,6 +210,39 @@ public class AllLevels {
 
 
 		//Level 9
+		
+		// Assuming driver is your WebDriver instance
+		String mainWindowHandle = driver.getWindowHandle();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+		// Wait for the number of windows to increase indicating a popup
+		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+
+		// Switch to the popup window
+		for (String windowHandle : driver.getWindowHandles()) {
+		    if (!mainWindowHandle.equals(windowHandle)) {
+		        driver.switchTo().window(windowHandle);
+		        break;
+		    }
+		}
+
+		// Extract text from the popup
+		WebElement passwordElement = driver.findElement(pass);
+		String password = passwordElement.getText();
+
+		// Close the popup and switch back to the main window
+		driver.close();
+		driver.switchTo().window(mainWindowHandle);
+
+		// Paste the extracted text into the textbox
+		WebElement inputElement9 = driver.findElement(textInput);
+		inputElement9.sendKeys(password);
+
+		// Click the "Continuar" button
+		WebElement continueButton = driver.findElement(clickButton);
+		continueButton.click();
+
+
 		
 		/*
 		
