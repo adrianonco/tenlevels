@@ -30,17 +30,7 @@ import java.time.Duration;
 public class AllLevels {
 	
 	private static WebDriver driver = null;
-	private By startButton = By.id("start_button");
-	private By levelTitle=By.cssSelector("h1");
-	private By input = By.id("input");
-	private By nextButton = By.id("next");
-	private By label = By.className("custom_dummy_label");
-	private By colorButton = By.cssSelector("a.btn.btn-dark.btn-lga");
-	private By link = By.linkText("Enlace!");
-	private By hiddenButton = By.id("hidden\"");
-	private By pass = By.id("pass");
-	private By textInput = By.id("input");
-	private By clickButton = By.id("next");
+
 
 	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
@@ -81,16 +71,16 @@ public class AllLevels {
 		
 		driver.get("https://pruebaselenium.serviciosdetesting.es/");
 		
-		WebElement levelTitleElement=driver.findElement(levelTitle);
+		WebElement levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		
 		//Level 1
 		
 		assertEquals(levelTitleElement.getText(),"Práctica Selenium");
 		
-		WebElement startButtonElement=driver.findElement(startButton);
+		WebElement startButtonElement=driver.findElement(By.id("start_button"));
 		startButtonElement.click();
 		
-		levelTitleElement=driver.findElement(levelTitle);
+		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals(levelTitleElement.getText(),"Level 2");
 		
 		//Useful to debug by waiting some miliseconds
@@ -99,13 +89,13 @@ public class AllLevels {
 		//Level 2
 
 		String text="selenium";
-		WebElement inputElement = driver.findElement(input);
+		WebElement inputElement = driver.findElement(By.id("input"));
 		inputElement.sendKeys(text);
 
-		WebElement nextButtonElement = driver.findElement(nextButton);
+		WebElement nextButtonElement = driver.findElement(By.id("next"));
 		nextButtonElement.click();
 		
-		levelTitleElement=driver.findElement(levelTitle);
+		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 3",levelTitleElement.getText());
 		
 		Thread.sleep(2000);
@@ -113,7 +103,7 @@ public class AllLevels {
 		//Level 3
 		
 		// Get the element with class="custom_dummy_label"
-		WebElement labelElement = driver.findElement(label);
+		WebElement labelElement = driver.findElement(By.className("custom_dummy_label"));
 
 		// Get the text of the label
 		String labelText = labelElement.getText();
@@ -134,7 +124,7 @@ public class AllLevels {
 		nextButton.click();
 		
 		// Get and check the title of next level
-		levelTitleElement=driver.findElement(levelTitle);
+		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 4",levelTitleElement.getText());
 		
 		Thread.sleep(2000);
@@ -142,14 +132,14 @@ public class AllLevels {
 		//Level 4
 		
 		// Get the list of four buttons
-		List<WebElement> listButtons = driver.findElements(colorButton);
+		List<WebElement> listButtons = driver.findElements(By.cssSelector("a.btn.btn-dark.btn-lga"));
 
 		// Iterate over the buttons and click them
 		for (WebElement changeColorButton : listButtons) {
 			changeColorButton.click();
 		}
 		
-		levelTitleElement=driver.findElement(levelTitle);
+		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 5",levelTitleElement.getText());
 		
 		Thread.sleep(2000);
@@ -157,12 +147,12 @@ public class AllLevels {
 		//Level 5
 		
 		// Get the link
-		WebElement linkElement = driver.findElement(link);
+		WebElement linkElement = driver.findElement(By.linkText("Enlace!"));
 
 		// Click the link
 		linkElement.click();
 		
-		levelTitleElement=driver.findElement(levelTitle);
+		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 6",levelTitleElement.getText());
 		
 		Thread.sleep(2000);
@@ -170,7 +160,7 @@ public class AllLevels {
 		//Level 6
 		
 		// Get the hidden button element
-		WebElement button = driver.findElement(hiddenButton);
+		WebElement button = driver.findElement(By.id("hidden\""));
 				
 		// Execute JavaScript to make the button visible and click
 		String onClick = button.getAttribute("onClick");
@@ -209,7 +199,7 @@ public class AllLevels {
 		// Click the "Aceptar" button
 		alert8.accept();
 		
-		levelTitleElement=driver.findElement(levelTitle);
+		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 9",levelTitleElement.getText());
 		
 		Thread.sleep(2000);
@@ -232,7 +222,7 @@ public class AllLevels {
 		}
 
 		// Extract text from the popup
-		WebElement passwordElement = driver.findElement(pass);
+		WebElement passwordElement = driver.findElement(By.id("pass"));
 		String password = passwordElement.getText();
 
 		// Close the popup and switch back to the main window
@@ -240,14 +230,14 @@ public class AllLevels {
 		driver.switchTo().window(mainWindowHandle);
 
 		// Paste the extracted text into the textbox
-		WebElement inputElement9 = driver.findElement(textInput);
+		WebElement inputElement9 = driver.findElement(By.id("input"));
 		inputElement9.sendKeys(password);
 
 		// Click the "Continuar" button
-		WebElement continueButton = driver.findElement(clickButton);
+		WebElement continueButton = driver.findElement(By.id("next"));
 		continueButton.click();
 		
-		levelTitleElement=driver.findElement(levelTitle);
+		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 10",levelTitleElement.getText());
 		
 		Thread.sleep(2000);
@@ -264,7 +254,7 @@ public class AllLevels {
 		// Perform drag-and-drop
 		actions.dragAndDrop(sourceElement, targetElement).perform();
 		
-		levelTitleElement=driver.findElement(levelTitle);
+		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("¡Enhorabuena! Has llegado al final de la práctica",levelTitleElement.getText());
 		
 		Thread.sleep(2000);
