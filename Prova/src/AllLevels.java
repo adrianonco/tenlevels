@@ -191,6 +191,7 @@ public class AllLevels {
 		// Click button
 		alert7.accept();
 		
+		Thread.sleep(2000);
 
 		//Level 8
 		
@@ -207,7 +208,11 @@ public class AllLevels {
 
 		// Click the "Aceptar" button
 		alert8.accept();
-
+		
+		levelTitleElement=driver.findElement(levelTitle);
+		assertEquals("Level 9",levelTitleElement.getText());
+		
+		Thread.sleep(2000);
 
 		//Level 9
 		
@@ -241,6 +246,11 @@ public class AllLevels {
 		// Click the "Continuar" button
 		WebElement continueButton = driver.findElement(clickButton);
 		continueButton.click();
+		
+		levelTitleElement=driver.findElement(levelTitle);
+		assertEquals("Level 10",levelTitleElement.getText());
+		
+		Thread.sleep(2000);
 
 		//Level 10
 		
@@ -253,6 +263,11 @@ public class AllLevels {
 
 		// Perform drag-and-drop
 		actions.dragAndDrop(sourceElement, targetElement).perform();
+		
+		levelTitleElement=driver.findElement(levelTitle);
+		assertEquals("¡Enhorabuena! Has llegado al final de la práctica",levelTitleElement.getText());
+		
+		Thread.sleep(2000);
 		
 	}
 
