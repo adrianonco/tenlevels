@@ -2,7 +2,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -17,20 +16,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.CapabilityType;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration; 
 
 
 public class AllLevels {
 	
 	private static WebDriver driver = null;
-
 
 	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
@@ -45,9 +39,7 @@ public class AllLevels {
 		chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
   		chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 		
-		
 		driver = new ChromeDriver(chromeOptions);
-		
 	}
 
 	@AfterAll
@@ -102,13 +94,13 @@ public class AllLevels {
 
 		//Level 3
 		
-		// Get the element with class="custom_dummy_label"
+		// Get the element of the label
 		WebElement labelElement = driver.findElement(By.className("custom_dummy_label"));
 
 		// Get the text of the label
 		String labelText = labelElement.getText();
 
-		// Get the input field with id="input"
+		// Get the input field element
 		WebElement inputField = driver.findElement(By.id("input"));
 
 		// Clear the input field
@@ -117,7 +109,7 @@ public class AllLevels {
 		// Paste the label's text into the input field
 		inputField.sendKeys(labelText);
 
-		// Get the button with id="next"
+		// Get the button element
 		WebElement nextButton = driver.findElement(By.id("next"));
 
 		// Click the next button
@@ -127,6 +119,7 @@ public class AllLevels {
 		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 4",levelTitleElement.getText());
 		
+		//Useful to debug by waiting some miliseconds
 		Thread.sleep(2000);
 	
 		//Level 4
@@ -146,7 +139,7 @@ public class AllLevels {
 		
 		//Level 5
 		
-		// Get the link
+		// Get the link element
 		WebElement linkElement = driver.findElement(By.linkText("Enlace!"));
 
 		// Click the link
@@ -193,7 +186,7 @@ public class AllLevels {
 		String expectedAlert8Text = "Introduce el número del próximo nivel y presiona 'Aceptar'";
 		assertEquals(expectedAlert8Text, alert8.getText());
 
-		// Write the level's number in the textbox
+		// Write the next level's number in the input text box
 		alert8.sendKeys("9");
 
 		// Click the "Aceptar" button
@@ -206,11 +199,11 @@ public class AllLevels {
 
 		//Level 9
 		
-		// Assuming driver is your WebDriver instance
+		// Given the driver is the WebDriver instance
 		String mainWindowHandle = driver.getWindowHandle();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-		// Wait for the number of windows to increase indicating a popup
+		// Wait for the number of windows to increase indicating a pop-up
 		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
 		// Switch to the popup window
@@ -221,15 +214,15 @@ public class AllLevels {
 		    }
 		}
 
-		// Extract text from the popup
+		// Extract the text from the pop-up
 		WebElement passwordElement = driver.findElement(By.id("pass"));
 		String password = passwordElement.getText();
 
-		// Close the popup and switch back to the main window
+		// Close the pop-up and switch back to the main window
 		driver.close();
 		driver.switchTo().window(mainWindowHandle);
 
-		// Paste the extracted text into the textbox
+		// Paste the extracted text into the input box
 		WebElement inputElement9 = driver.findElement(By.id("input"));
 		inputElement9.sendKeys(password);
 
@@ -244,20 +237,19 @@ public class AllLevels {
 
 		//Level 10
 		
-		// Find the source and target elements
+		// Get the source and target elements
 		WebElement sourceElement = driver.findElement(By.id("source"));
 		WebElement targetElement = driver.findElement(By.id("target"));
 
 		// Create an instance of the Actions class
 		Actions actions = new Actions(driver);
 
-		// Perform drag-and-drop
+		// Perform drag-and-drop action
 		actions.dragAndDrop(sourceElement, targetElement).perform();
 		
+		// Assert successful test message
 		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("¡Enhorabuena! Has llegado al final de la práctica",levelTitleElement.getText());
-		
-		Thread.sleep(2000);
 		
 	}
 
