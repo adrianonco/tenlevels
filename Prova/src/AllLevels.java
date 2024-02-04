@@ -94,13 +94,13 @@ public class AllLevels {
 
 		//Level 3
 		
-		// Get the element of the label
+		// Locate the element of the label
 		WebElement labelElement = driver.findElement(By.className("custom_dummy_label"));
 
 		// Get the text of the label
 		String labelText = labelElement.getText();
 
-		// Get the input field element
+		// Locate the input field element
 		WebElement inputField = driver.findElement(By.id("input"));
 
 		// Clear the input field
@@ -109,22 +109,22 @@ public class AllLevels {
 		// Paste the label's text into the input field
 		inputField.sendKeys(labelText);
 
-		// Get the button element
+		// Locate the button element
 		WebElement nextButton = driver.findElement(By.id("next"));
 
 		// Click the next button
 		nextButton.click();
 		
-		// Get and check the title of next level
+		// Locate and check the title of next level
 		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 4",levelTitleElement.getText());
 		
-		//Useful to debug by waiting some miliseconds
+		// Useful to debug by waiting some miliseconds
 		Thread.sleep(2000);
 	
 		//Level 4
 		
-		// Get the list of four buttons
+		// Locate the list of four buttons
 		List<WebElement> listButtons = driver.findElements(By.cssSelector("a.btn.btn-dark.btn-lga"));
 
 		// Iterate over the buttons and click them
@@ -132,33 +132,38 @@ public class AllLevels {
 			changeColorButton.click();
 		}
 		
+		// Locate and check the title of next level
 		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 5",levelTitleElement.getText());
 		
+		// Wait
 		Thread.sleep(2000);
 		
 		//Level 5
 		
-		// Get the link element
+		// Locate the link element
 		WebElement linkElement = driver.findElement(By.linkText("Enlace!"));
 
-		// Click the link
+		// Click it
 		linkElement.click();
 		
+		// Locate and check the title of next level
 		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 6",levelTitleElement.getText());
 		
+		// Wait
 		Thread.sleep(2000);
 
 		//Level 6
 		
-		// Get the hidden button element
+		// Locate the hidden button element
 		WebElement button = driver.findElement(By.id("hidden\""));
 				
 		// Execute JavaScript to make the button visible and click
 		String onClick = button.getAttribute("onClick");
 		((JavascriptExecutor)driver).executeScript(onClick);
 		
+		// Wait
 		Thread.sleep(2000);
 
 		//Level 7
@@ -171,9 +176,10 @@ public class AllLevels {
 		String expectedAlert7Text = "Quieres ir al siguiente nivel?";
 		assertEquals(expectedAlert7Text, alert7.getText());
 
-		// Click button
+		// Click the button
 		alert7.accept();
 		
+		// Wait
 		Thread.sleep(2000);
 
 		//Level 8
@@ -192,9 +198,11 @@ public class AllLevels {
 		// Click the "Aceptar" button
 		alert8.accept();
 		
+		// Locate and check the title of next level
 		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 9",levelTitleElement.getText());
 		
+		// Wait
 		Thread.sleep(2000);
 
 		//Level 9
@@ -230,14 +238,16 @@ public class AllLevels {
 		WebElement continueButton = driver.findElement(By.id("next"));
 		continueButton.click();
 		
+		// Locate and check the title of next level
 		levelTitleElement=driver.findElement(By.cssSelector("h1"));
 		assertEquals("Level 10",levelTitleElement.getText());
 		
+		// Wait
 		Thread.sleep(2000);
 
 		//Level 10
 		
-		// Get the source and target elements
+		// Locate the source and target elements
 		WebElement sourceElement = driver.findElement(By.id("source"));
 		WebElement targetElement = driver.findElement(By.id("target"));
 
